@@ -1,0 +1,132 @@
+{
+  "base_project_folder": "lib/",
+  "output_collection_path": "output/collected_content.txt",
+  "output_tree_path": "output/ProjectTree.txt",
+  "ignore_patterns": [
+    ".dart_tool",
+    "build",
+    ".*",
+    "*.pyc",
+    "*.pyo",
+    "*.pyd",
+    "*.log",
+    "*.user",
+    "*.suo",
+    "*.egg-info",
+    "__pycache__",
+    ".pytest_cache",
+    ".mypy_cache",
+    ".coverage",
+    "htmlcov",
+    "venv",
+    "env",
+    ".env",
+    "dist",
+    "target",
+    "node_modules",
+    ".git",
+    "output",
+    "bin",
+    "obj",
+    "packages",
+    "vendor",
+    "test",
+    "helper prompts.txtz_test"
+    ,"language_test_page.dart"
+   , "constants0"
+   ,"*.yaml"
+   ,".flutter-plugins-dependencies",
+   "db_version_migrations.dart","auth","db_version_constants.dart","seed_data.dart","auth/",
+   "XX_*.dart",
+   "XX_features","documents","documents/","XX_features_tests"
+  ],
+  "folder_priority": [
+    "shared",
+    "main.py",
+    "app.py",
+    "requirements.txt",
+    "setup.py",
+    "lib",
+    "assets"
+  ],
+"file_patterns": [  
+    // Core Logic Naming
+    "*_model.dart",
+    "*_repository.dart",
+    "*_providers.dart",
+    "*_notifier.dart",
+    "di_*.dart",
+
+    // UI Naming
+    "*_screen.dart",
+    "*_widget.dart",
+    "*_dialog.dart",
+    
+    // Feature Logic (Recursive, Single-purpose)
+    "features/**/*_model.dart",
+    "features/**/*_repository.dart",
+    "features/**/*_providers.dart",
+    "features/**/*_notifier.dart",
+    "features/**/di_*.dart",
+    
+    // Feature UI (Recursive, Single-purpose)
+    "features/**/*_screen.dart",
+    "features/**/*_widget.dart",
+    "features/**/*_dialog.dart",
+
+
+
+    {
+        "name": "Grouped: All Core Logic Naming (*_model, *_repo, *_provider, di_*)",
+        "pattern": "*_model.dart,*_repository.dart,*_providers.dart,*_notifier.dart,di_*.dart"
+    },
+    {
+        "name": "Grouped: All UI Component Naming (*_screen, *_widget, *_dialog)",
+        "pattern": "*_screen.dart,*_widget.dart,*_dialog.dart"
+    },
+    {
+        "name": "FEATURE: All Presentation Files (Screens, Widgets, Forms)",
+        "pattern": "features/**/screens/*.dart,features/**/widgets/*.dart,features/**/forms/*.dart"
+    },
+    {
+        "name": "FEATURE: All Core Logic (Models, Repos, Providers, Notifiers, DI) - Recursive",
+        "pattern": "features/**/*_model.dart,features/**/*_repository.dart,features/**/*_providers.dart,features/**/*_notifier.dart,features/**/di_*.dart"
+    },
+    {
+        "name": "CORE: Utilities, Database (DAO, Migrations, Constants)",
+        "pattern": "core/utils/*.dart,core/database/*.dart"
+    },
+    {
+        "name": "CORE: Base Classes (Base Notifiers, Errors/Exceptions)",
+        "pattern": "core/providers/*.dart,core/database/*.dart,core/errors/*.dart"
+    },
+    {
+        "name": "UI: All UI Layer Files (constants, forms, screens, widgets)",
+        "pattern": "ui/**/*.dart"
+    }
+],
+
+  "skip_todo_comments": true,
+  "remove_singleline_comment": false,
+  "remove_multiline_comments": false,
+  "enable_output_header": false,
+  "ignore_hidden_items": true,
+  "scan_subfolders": true,
+  "add_tree_spacing": false,
+  "max_worker_threads": 12,
+  "use_gitignore": true,
+  "project_type": "flutter",
+  "allowed_extensions": [
+    ".dart",
+    ".yaml",
+    ".json",
+    ".md",
+    ".arb"
+  ],
+  "show_empty_folders": false,
+  "lock_configuration": true,
+  "reset_on_next_load": false,
+  "apply_core_settings": true,
+  "linear_display_style_enable": true,
+  "enable_export_as_separate_files": false
+}

@@ -1,0 +1,214 @@
+Project Tree for: E:\_flutter_projects_workspace\fintracker\lib (Full Structure)
+==================================================
+├── app.dart
+├── events.dart
+├── main.dart
+├── bloc
+│   └── cubit
+│       └── app_cubit.dart
+├── dao
+│   ├── account_dao.dart
+│   ├── category_dao.dart
+│   └── payment_dao.dart
+├── data
+│   └── icons.dart
+├── helpers
+│   ├── color.helper.dart
+│   ├── currency.helper.dart
+│   ├── db.helper.dart
+│   └── migrations
+│       └── migrations.dart
+├── model
+│   ├── account.model.dart
+│   ├── category.model.dart
+│   └── payment.model.dart
+├── screens
+│   ├── main.screen.dart
+│   ├── payment_form.screen.dart
+│   ├── accounts
+│   │   └── accounts.screen.dart
+│   ├── categories
+│   │   └── categories.screen.dart
+│   ├── home
+│   │   ├── home.screen.dart
+│   │   └── widgets
+│   │       ├── account_slider.dart
+│   │       └── payment_list_item.dart
+│   ├── onboard
+│   │   ├── onboard_screen.dart
+│   │   └── widgets
+│   │       ├── currency_pic.dart
+│   │       ├── landing.dart
+│   │       └── profile.dart
+│   └── settings
+│       └── settings.screen.dart
+├── theme
+│   └── colors.dart
+└── widgets
+    ├── currency.dart
+    ├── buttons
+    │   └── button.dart
+    └── dialog
+        ├── account_form.dialog.dart
+        ├── category_form.dialog.dart
+        ├── confirm.modal.dart
+        └── loading_dialog.dart
+
+او
+Project Tree for: E:\_flutter_projects_workspace\iddikhar\lib (Full Structure)
+==================================================
+├── app
+│   ├── app.dart
+│   ├── main.dart
+│   ├── routes.dart
+│   └── theme
+│       ├── di_theme.dart
+│       ├── fallback_theme.dart
+│       ├── theme.dart
+│       └── theme_manager.dart
+├── core
+│   ├── di_core.dart
+│   ├── database
+│   │   ├── app_database.dart
+│   │   ├── base_dao.dart
+│   │   ├── db_constants.dart
+│   │   └── db_migrations.dart
+│   ├── errors
+│   │   ├── exceptions.dart
+│   │   └── failures.dart
+│   ├── providers
+│   │   ├── base_auto_dispose_async_notifier.dart
+│   │   ├── base_auto_dispose_crud_notifier.dart
+│   │   ├── base_form_notifier.dart
+│   │   └── operation_interfaces.dart
+│   └── utils
+│       ├── date_utils.dart
+│       ├── enums.dart
+│       ├── extensions.dart
+│       ├── logger.dart
+│       ├── number_utils.dart
+│       └── validators.dart
+├── features
+│   ├── customers
+│   │   ├── di_customers.dart
+│   │   ├── models
+│   │   │   ├── customer_balance_view_model.dart
+│   │   │   └── customer_model.dart
+│   │   ├── presentation
+│   │   │   ├── forms
+│   │   │   │   ├── customer_form_dialog.dart
+│   │   │   │   └── customer_limits_form_dialog.dart
+│   │   │   ├── providers
+│   │   │   │   ├── balance_providers.dart
+│   │   │   │   └── customer_providers.dart
+│   │   │   ├── screens
+│   │   │   │   ├── customer_balances_screen.dart
+│   │   │   │   ├── customer_details_screen.dart
+│   │   │   │   └── customers_list_screen.dart
+│   │   │   └── widgets
+│   │   │       ├── CurrencyDropdownField.dart
+│   │   │       ├── customer_balance_details.dart
+│   │   │       ├── customer_balance_list_item.dart
+│   │   │       ├── customer_details_widget.dart
+│   │   │       ├── customer_list_item.dart
+│   │   │       ├── customer_quick_actions.dart
+│   │   │       └── filter_dialog_content.dart
+│   │   └── repositories
+│   │       ├── balance_repository.dart
+│   │       └── customer_repository.dart
+│   ├── home
+│   │   ├── di_home.dart
+│   │   └── presentation
+│   │       ├── providers
+│   │       │   └── home_provider.dart
+│   │       ├── screens
+│   │       │   └── home_screen.dart
+│   │       └── widgets
+│   │           └── home_widgets.dart
+│   ├── master_data
+│   │   ├── di_master_data.dart
+│   │   ├── models
+│   │   │   ├── currency_model.dart
+│   │   │   └── customer_group_model.dart
+│   │   ├── presentation
+│   │   │   ├── forms
+│   │   │   │   ├── currency_form.dart
+│   │   │   │   └── customer_group_form.dart
+│   │   │   ├── providers
+│   │   │   │   ├── currency_provider.dart
+│   │   │   │   └── customer_group_provider.dart
+│   │   │   ├── screens
+│   │   │   │   ├── currencies_screen.dart
+│   │   │   │   └── customer_groups_screen.dart
+│   │   │   └── widgets
+│   │   │       ├── currency_list_item.dart
+│   │   │       ├── customer_group_list_item.dart
+│   │   │       └── master_data_list_item.dart
+│   │   └── repositories
+│   │       ├── currency_repository.dart
+│   │       └── customer_group_repository.dart
+│   ├── settings
+│   │   ├── di_settings.dart
+│   │   ├── datasources
+│   │   │   └── settings_local_datasource.dart
+│   │   ├── presentation
+│   │   │   ├── providers
+│   │   │   │   └── settings_provider.dart
+│   │   │   └── screens
+│   │   │       └── settings_screen.dart
+│   │   └── repositories
+│   │       └── settings_repository.dart
+│   └── transactions
+│       ├── di_transactions.dart
+│       ├── models
+│       │   ├── transaction_detail_model.dart
+│       │   └── transaction_model.dart
+│       ├── presentation
+│       │   ├── forms
+│       │   │   └── transaction_form_dialog.dart
+│       │   ├── providers
+│       │   │   ├── transaction_providers.dart
+│       │   │   └── transaction_views_providers.dart
+│       │   ├── screens
+│       │   │   ├── transaction_details_screen.dart
+│       │   │   ├── transaction_summary_screen.dart
+│       │   │   ├── transactions_list_screen.dart
+│       │   │   └── transactions_screen.dart
+│       │   └── widgets
+│       │       ├── advanced_transaction_filters.dart
+│       │       ├── transaction_details_widget.dart
+│       │       ├── transaction_filters_drawer.dart
+│       │       ├── transaction_filters_widget.dart
+│       │       ├── transaction_list_item.dart
+│       │       ├── transaction_quick_actions.dart
+│       │       ├── transaction_receipt.dart
+│       │       └── transaction_summary_card.dart
+│       └── repositories
+│           ├── transaction_repository.dart
+│           └── transaction_views_repository.dart
+└── ui
+    ├── ui_exports.dart
+    ├── constants
+    │   ├── app_colors.dart
+    │   ├── app_sizes.dart
+    │   └── app_text_styles.dart
+    ├── forms
+    │   ├── app_form_dialog.dart
+    │   ├── form_fields.dart
+    │   └── form_utils.dart
+    ├── screens
+    │   ├── app_details_screen.dart
+    │   └── app_list_screen.dart
+    └── widgets
+        ├── app_bottom_sheet.dart
+        ├── app_button.dart
+        ├── app_card.dart
+        ├── app_dialogs.dart
+        ├── app_error_widget.dart
+        ├── app_input_field.dart
+        ├── app_scaffold.dart
+        ├── app_search_field.dart
+        ├── app_separator.dart
+        ├── app_snackbar.dart
+        ├── empty_state.dart
+        └── loading_indicator.dart

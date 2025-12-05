@@ -1,0 +1,2619 @@
+الان بالعلم ان:
+// === FOLDER: ui (DEEP) ===
+
+// --- FILE: lib/ui/constants/app_breakpoints.dart ---
+
+import 'package:flutter/material.dart';
+
+class AppBreakpoints {
+  AppBreakpoints._();
+
+  static const double mobile = 600;
+  static const double tablet = 900;
+  static const double desktop = 1200;
+
+  static bool isMobile(BuildContext context) => 
+      MediaQuery.of(context).size.width < mobile;
+  
+  static bool isTablet(BuildContext context) {
+    final width = MediaQuery.of(context).size.width;
+    return width >= mobile && width < tablet;
+  }
+  
+  static bool isDesktop(BuildContext context) => 
+      MediaQuery.of(context).size.width >= tablet;
+
+  static T responsiveValue<T>({
+    required BuildContext context,
+    required T mobile,
+    required T tablet,
+    required T desktop,
+  }) {
+    if (isDesktop(context)) return desktop;
+    if (isTablet(context)) return tablet;
+    return mobile;
+  }
+}
+
+
+// --- FILE: lib/ui/constants/app_colors.dart ---
+import 'package:flutter/material.dart';
+
+abstract class AppColors {
+  AppColors._();
+
+  // Primary Color Palette
+  static const Color primary = Color(0xFF007BFF);
+  static const Color primaryLight = Color(0xFF66A9FF);
+  static const Color primaryDark = Color(0xFF0056B3);
+  
+  // Secondary Color Palette
+  static const Color secondary = Color(0xFF28A745);
+  static const Color secondaryLight = Color(0xFF63D471);
+  static const Color secondaryDark = Color(0xFF1E7E34);
+  
+  // Semantic Colors
+  static const Color success = Color(0xFF28A745);
+  static const Color danger = Color(0xFFDC3545); 
+   static const Color error = Color(0xFFDC3545);
+  static const Color warning = Color(0xFFFFC107);
+  static const Color info = Color(0xFF17A2B8);
+  
+  // Neutral Colors
+  static const Color background = Color(0xFFF8F9FA);
+  static const Color surface = Color(0xFFFFFFFF);
+  static const Color onPrimary = Color(0xFFFFFFFF);
+  static const Color onSecondary = Color(0xFFFFFFFF);
+  static const Color onSurface = Color(0xFF212529);
+  static const Color onSurfaceVariant = Color(0xFF495057);
+  
+  // Border Colors
+  static const Color border = Color(0xFFDEE2E6);
+  static const Color borderLight = Color(0xFFE9ECEF);
+  
+  // State Colors
+  static const Color disabled = Color(0xFF6C757D);
+  
+  // Simplified opacity methods
+  static Color withOpacity(Color color, double opacity) => color.withOpacity(opacity);
+    // Chart Colors Palette
+  static const List<Color> chartColors = [
+    primary,
+    secondary,
+    warning,
+    danger,
+    Color(0xFF6F42C1),
+    Color(0xFFE83E8C),
+    Color(0xFFFD7E14),
+    Color(0xFF20C997),
+  ];
+}
+
+
+// --- FILE: lib/ui/constants/app_sizes.dart ---
+import 'package:flutter/material.dart';
+
+// A utility class for responsive design.
+class AppSizes {
+  // private constructor
+  AppSizes._();
+
+  // Static size constants
+  static const double spaceXS = 4.0;
+  static const double spaceS = 8.0;
+  static const double spaceM = 12.0;
+  static const double spaceL = 16.0;
+  static const double spaceXL = 24.0;
+  static const double spaceXXL = 32.0;
+
+  static const double radiusS = 4.0;
+  static const double radiusM = 8.0;
+  static const double radiusL = 12.0;
+  static const double radiusXL = 16.0;
+
+  static const double iconSizeXS = 12.0;
+  static const double iconSizeS = 16.0;
+  static const double iconSizeM = 24.0;
+  static const double iconSizeL = 32.0;
+
+  static const double buttonHeight = 48.0;
+  static const double buttonHeightSmall = 40.0;
+
+  static const double cardRadius = 12.0;
+  static const double cardElevation = 2.0;
+
+  // Gets the screen width and height.
+  static double screenWidth(BuildContext context) => MediaQuery.of(context).size.width;
+  static double screenHeight(BuildContext context) => MediaQuery.of(context).size.height;
+
+  // Responsive spacing values.
+  static double getResponsiveSpacer(BuildContext context, double base) {
+    if (isMobile(context)) return base;
+    if (isTablet(context)) return base * 1.5;
+    return base * 2;
+  }
+
+  // Responsive font sizes.
+  static double getResponsiveFontSize(BuildContext context, double base) {
+    if (isMobile(context)) return base;
+    if (isTablet(context)) return base * 1.2;
+    return base * 1.4;
+  }
+
+  // Screen breakpoints.
+  static const double _mobileBreakpoint = 600;
+  static const double _tabletBreakpoint = 900;
+
+  // Checks for device type.
+  static bool isMobile(BuildContext context) => screenWidth(context) < _mobileBreakpoint;
+  static bool isTablet(BuildContext context) => screenWidth(context) >= _mobileBreakpoint && screenWidth(context) < _tabletBreakpoint;
+  static bool isDesktop(BuildContext context) => screenWidth(context) >= _tabletBreakpoint;
+}
+
+
+// --- FILE: lib/ui/constants/app_text_styles.dart ---
+import 'package:flutter/material.dart';
+import 'app_colors.dart';
+
+class AppTextStyles {
+  AppTextStyles._();
+
+  static const String _fontFamily = 'Cairo';
+
+  // Display Styles
+  static const TextStyle displayLarge = TextStyle(
+    fontFamily: _fontFamily,
+    fontSize: 57,
+    fontWeight: FontWeight.w400,
+    height: 1.12,
+    color: AppColors.onSurface,
+  );
+
+  static const TextStyle displayMedium = TextStyle(
+    fontFamily: _fontFamily,
+    fontSize: 45,
+    fontWeight: FontWeight.w400,
+    height: 1.15,
+    color: AppColors.onSurface,
+  );
+
+  static const TextStyle displaySmall = TextStyle(
+    fontFamily: _fontFamily,
+    fontSize: 36,
+    fontWeight: FontWeight.w400,
+    height: 1.22,
+    color: AppColors.onSurface,
+  );
+
+  // Headline Styles
+  static const TextStyle headlineLarge = TextStyle(
+    fontFamily: _fontFamily,
+    fontSize: 32,
+    fontWeight: FontWeight.w700,
+    height: 1.25,
+    color: AppColors.onSurface,
+  );
+
+  static const TextStyle headlineMedium = TextStyle(
+    fontFamily: _fontFamily,
+    fontSize: 28,
+    fontWeight: FontWeight.w600,
+    height: 1.28,
+    color: AppColors.onSurface,
+  );
+
+  static const TextStyle headlineSmall = TextStyle(
+    fontFamily: _fontFamily,
+    fontSize: 24,
+    fontWeight: FontWeight.w500,
+    height: 1.33,
+    color: AppColors.onSurface,
+  );
+
+  // Title Styles
+  static const TextStyle titleLarge = TextStyle(
+    fontFamily: _fontFamily,
+    fontSize: 22,
+    fontWeight: FontWeight.w600,
+    height: 1.27,
+    color: AppColors.onSurface,
+  );
+
+  static const TextStyle titleMedium = TextStyle(
+    fontFamily: _fontFamily,
+    fontSize: 16,
+    fontWeight: FontWeight.w500,
+    height: 1.5,
+    color: AppColors.onSurface,
+  );
+
+  static const TextStyle titleSmall = TextStyle(
+    fontFamily: _fontFamily,
+    fontSize: 14,
+    fontWeight: FontWeight.w500,
+    height: 1.42,
+    color: AppColors.onSurface,
+  );
+
+  // Body Styles
+  static const TextStyle bodyLarge = TextStyle(
+    fontFamily: _fontFamily,
+    fontSize: 16,
+    fontWeight: FontWeight.w400,
+    height: 1.5,
+    color: AppColors.onSurface,
+  );
+
+  static const TextStyle bodyMedium = TextStyle(
+    fontFamily: _fontFamily,
+    fontSize: 14,
+    fontWeight: FontWeight.w400,
+    height: 1.42,
+    color: AppColors.onSurface,
+  );
+
+  static const TextStyle bodySmall = TextStyle(
+    fontFamily: _fontFamily,
+    fontSize: 12,
+    fontWeight: FontWeight.w400,
+    height: 1.33,
+    color: AppColors.onSurface,
+  );
+
+  // Label Styles
+  static const TextStyle labelLarge = TextStyle(
+    fontFamily: _fontFamily,
+    fontSize: 14,
+    fontWeight: FontWeight.w500,
+    height: 1.42,
+    color: AppColors.onSurface,
+  );
+
+  static const TextStyle labelMedium = TextStyle(
+    fontFamily: _fontFamily,
+    fontSize: 12,
+    fontWeight: FontWeight.w500,
+    height: 1.33,
+    color: AppColors.onSurface,
+  );
+
+  static const TextStyle labelSmall = TextStyle(
+    fontFamily: _fontFamily,
+    fontSize: 11,
+    fontWeight: FontWeight.w500,
+    height: 1.27,
+    color: AppColors.onSurface,
+  );
+
+  // Semantic Text Styles
+  static TextStyle get successText => bodyMedium.copyWith(color: AppColors.success);
+  static TextStyle get dangerText => bodyMedium.copyWith(color: AppColors.danger);
+  static TextStyle get warningText => bodyMedium.copyWith(color: AppColors.warning);
+  static TextStyle get infoText => bodyMedium.copyWith(color: AppColors.info);
+  static TextStyle get disabledText => bodyMedium.copyWith(color: AppColors.disabled);
+}
+
+
+// --- FILE: lib/ui/forms/form_utils.dart ---
+
+class FormUtils {
+  static String? validateRequired(String? value, {String? fieldName}) {
+    if (value == null || value.trim().isEmpty) {
+      return '${fieldName ?? 'هذا الحقل'} مطلوب';
+    }
+    return null;
+  }
+
+  static String? validateEmail(String? value) {
+    if (value == null || value.isEmpty) return null;
+    
+    final emailRegex = RegExp(
+      r'^[a-zA-Z0-9.]+@[a-zA-Z0-9]+\.[a-zA-Z]+',
+    );
+    if (!emailRegex.hasMatch(value)) {
+      return 'البريد الإلكتروني غير صالح';
+    }
+    return null;
+  }
+
+  static String? validatePhone(String? value) {
+    if (value == null || value.isEmpty) return null;
+    
+    final phoneRegex = RegExp(r'^[0-9]{10,15}$');
+    if (!phoneRegex.hasMatch(value)) {
+      return 'رقم الهاتف غير صالح';
+    }
+    return null;
+  }
+
+  static String? validateNumber(String? value) {
+    if (value == null || value.isEmpty) return null;
+    
+    if (double.tryParse(value) == null) {
+      return 'يجب أن يكون رقماً';
+    }
+    return null;
+  }
+
+  static String? validateMinLength(String? value, int minLength) {
+    if (value == null || value.length < minLength) {
+      return 'يجب أن يكون على الأقل $minLength أحرف';
+    }
+    return null;
+  }
+
+  static String? validateMaxLength(String? value, int maxLength) {
+    if (value != null && value.length > maxLength) {
+      return 'يجب أن لا يتجاوز $maxLength أحرف';
+    }
+    return null;
+  }
+
+  static validateDouble(String? value) {}
+
+  static validateInteger(String? value) {}
+}
+
+
+// --- FILE: lib/ui/theme/di_theme.dart ---
+import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:iddikhar/ui/theme/theme_manager.dart';
+import 'fallback_theme.dart';
+import 'theme.dart';
+
+final themeManagerProvider = ChangeNotifierProvider<ThemeManager>((ref) {
+  return ThemeManager();
+});
+
+final currentThemeProvider = Provider<AppTheme>((ref) {
+  return ref.watch(themeManagerProvider).currentTheme;
+});
+
+final themeDataProvider = Provider<ThemeData>((ref) {
+  try {
+    final currentTheme = ref.watch(currentThemeProvider);
+    final appThemes = AppThemes.defaultTheme; 
+    return currentTheme == AppTheme.dark ? appThemes.dark : appThemes.light;
+  } catch (e) {
+    return FallbackThemes.light;
+  }
+});
+
+final isDarkModeProvider = Provider<bool>((ref) {
+  return ref.watch(themeManagerProvider).isDarkMode;
+});
+
+
+// --- FILE: lib/ui/theme/fallback_theme.dart ---
+
+import 'package:flutter/material.dart';
+
+class FallbackThemes {
+  static ThemeData get light => ThemeData(
+        primarySwatch: Colors.blue,
+        useMaterial3: true,
+        fontFamily: 'Tajawal',
+      );
+
+  static ThemeData get dark => ThemeData.dark().copyWith(
+        primaryColor: Colors.blue,
+
+      );
+}
+
+
+// --- FILE: lib/ui/theme/theme.dart ---
+import 'package:flutter/material.dart';
+import 'package:iddikhar/ui/constants/app_colors.dart';
+import 'package:iddikhar/ui/constants/app_sizes.dart';
+import 'package:iddikhar/ui/constants/app_text_styles.dart';
+
+class AppThemeData {
+  final ThemeData light;
+  final ThemeData dark;
+
+  AppThemeData({required this.light, required this.dark});
+}
+
+class AppThemes {
+  AppThemes._();
+
+  static AppThemeData get defaultTheme => AppThemeData(
+        light: _lightTheme,
+        dark: _darkTheme,
+      );
+
+  static ThemeData get _lightTheme => ThemeData(
+
+        colorScheme: const ColorScheme.light(
+          primary: AppColors.primary,
+          secondary: AppColors.secondary,
+          surface: AppColors.surface,
+          error: AppColors.danger,
+          onPrimary: AppColors.onPrimary,
+          onSecondary: AppColors.onSecondary,
+          onSurface: AppColors.onSurface,
+          onError: AppColors.onPrimary,
+        ),
+        scaffoldBackgroundColor: AppColors.background,
+        appBarTheme: AppBarTheme(
+          backgroundColor: AppColors.primary,
+          foregroundColor: AppColors.onPrimary,
+          titleTextStyle: AppTextStyles.titleLarge.copyWith(color: AppColors.onPrimary),
+          elevation: 0,
+        ),
+        textTheme: const TextTheme(
+          displayLarge: AppTextStyles.displayLarge,
+          headlineLarge: AppTextStyles.headlineLarge,
+          headlineMedium: AppTextStyles.headlineMedium,
+          headlineSmall: AppTextStyles.headlineSmall,
+          titleLarge: AppTextStyles.titleLarge,
+          titleMedium: AppTextStyles.titleMedium,
+          titleSmall: AppTextStyles.titleSmall,
+          bodyLarge: AppTextStyles.bodyLarge,
+          bodyMedium: AppTextStyles.bodyMedium,
+          bodySmall: AppTextStyles.bodySmall,
+          labelLarge: AppTextStyles.labelLarge,
+          labelMedium: AppTextStyles.labelMedium,
+          labelSmall: AppTextStyles.labelSmall,
+        ),
+        inputDecorationTheme: InputDecorationTheme(
+          filled: true,
+          fillColor: AppColors.surface,
+          border: OutlineInputBorder(
+            borderRadius: BorderRadius.circular(AppSizes.radiusM),
+            borderSide: const BorderSide(color: AppColors.border),
+          ),
+          enabledBorder: OutlineInputBorder(
+            borderRadius: BorderRadius.circular(AppSizes.radiusM),
+            borderSide: const BorderSide(color: AppColors.border),
+          ),
+          focusedBorder: OutlineInputBorder(
+            borderRadius: BorderRadius.circular(AppSizes.radiusM),
+            borderSide: const BorderSide(color: AppColors.primary),
+          ),
+          errorBorder: OutlineInputBorder(
+            borderRadius: BorderRadius.circular(AppSizes.radiusM),
+            borderSide: const BorderSide(color: AppColors.danger),
+          ),
+          contentPadding: const EdgeInsets.symmetric(
+            horizontal: AppSizes.spaceL,
+            vertical: AppSizes.spaceM,
+          ),
+        ),
+        cardTheme: CardThemeData(
+          elevation: AppSizes.cardElevation,
+          shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(AppSizes.cardRadius),
+          ),
+        ),
+        elevatedButtonTheme: ElevatedButtonThemeData(
+          style: ElevatedButton.styleFrom(
+            backgroundColor: AppColors.primary,
+            foregroundColor: AppColors.onPrimary,
+            elevation: 2,
+            shape: RoundedRectangleBorder(
+              borderRadius: BorderRadius.circular(AppSizes.radiusM),
+            ),
+            padding: const EdgeInsets.symmetric(
+              horizontal: AppSizes.spaceL,
+              vertical: AppSizes.spaceM,
+            ),
+          ),
+        ),
+      );
+
+  static ThemeData get _darkTheme => ThemeData.dark().copyWith(
+        colorScheme: const ColorScheme.dark(
+          primary: AppColors.primaryLight,
+          secondary: AppColors.secondaryLight,
+          surface: Color(0xFF1E1E1E),
+          error: AppColors.danger,
+          onPrimary: AppColors.onPrimary,
+          onSecondary: AppColors.onPrimary,
+          onSurface: Colors.white,
+      
+          onError: AppColors.onPrimary,
+        ),
+        scaffoldBackgroundColor: const Color(0xFF121212),
+        appBarTheme: const AppBarTheme(
+          backgroundColor: Color(0xFF1E1E1E),
+          foregroundColor: AppColors.onPrimary,
+          elevation: 0,
+        ),
+        inputDecorationTheme: InputDecorationTheme(
+          filled: true,
+          fillColor: const Color(0xFF1E1E1E),
+          border: OutlineInputBorder(
+            borderRadius: BorderRadius.circular(AppSizes.radiusM),
+            borderSide: const BorderSide(color: AppColors.border),
+          ),
+          enabledBorder: OutlineInputBorder(
+            borderRadius: BorderRadius.circular(AppSizes.radiusM),
+            borderSide: const BorderSide(color: AppColors.onSurface),
+          ),
+          focusedBorder: OutlineInputBorder(
+            borderRadius: BorderRadius.circular(AppSizes.radiusM),
+            borderSide: const BorderSide(color: AppColors.primaryLight),
+          ),
+          errorBorder: OutlineInputBorder(
+            borderRadius: BorderRadius.circular(AppSizes.radiusM),
+            borderSide: const BorderSide(color: AppColors.danger),
+          ),
+          contentPadding: const EdgeInsets.symmetric(
+            horizontal: AppSizes.spaceL,
+            vertical: AppSizes.spaceM,
+          ),
+        ),
+        cardTheme: CardThemeData(
+          elevation: AppSizes.cardElevation,
+          shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(AppSizes.cardRadius),
+          ),
+          color: const Color(0xFF1E1E1E),
+        ),
+        elevatedButtonTheme: ElevatedButtonThemeData(
+          style: ElevatedButton.styleFrom(
+            backgroundColor: AppColors.primaryLight,
+            foregroundColor: AppColors.onPrimary,
+            elevation: 2,
+            shape: RoundedRectangleBorder(
+              borderRadius: BorderRadius.circular(AppSizes.radiusM),
+            ),
+            padding: const EdgeInsets.symmetric(
+              horizontal: AppSizes.spaceL,
+              vertical: AppSizes.spaceM,
+            ),
+          ),
+        ),
+        textTheme: const TextTheme(
+          displayLarge: AppTextStyles.displayLarge,
+          headlineLarge: AppTextStyles.headlineLarge,
+          headlineMedium: AppTextStyles.headlineMedium,
+          headlineSmall: AppTextStyles.headlineSmall,
+          titleLarge: AppTextStyles.titleLarge,
+          titleMedium: AppTextStyles.titleMedium,
+          titleSmall: AppTextStyles.titleSmall,
+          bodyLarge: AppTextStyles.bodyLarge,
+          bodyMedium: AppTextStyles.bodyMedium,
+          bodySmall: AppTextStyles.bodySmall,
+          labelLarge: AppTextStyles.labelLarge,
+          labelMedium: AppTextStyles.labelMedium,
+          labelSmall: AppTextStyles.labelSmall,
+        ).apply(
+          bodyColor: Colors.white,
+          displayColor: Colors.white,
+        ),
+      );
+}
+
+
+// --- FILE: lib/ui/theme/theme_manager.dart ---
+import 'package:flutter/material.dart';
+
+
+enum AppTheme { light, dark }
+
+class ThemeManager with ChangeNotifier {
+  AppTheme _currentTheme = AppTheme.light; 
+  
+  AppTheme get currentTheme => _currentTheme;
+  
+  void setTheme(AppTheme theme) {
+    _currentTheme = theme;
+    notifyListeners();
+  }
+  
+  void toggleTheme() {
+    _currentTheme = _currentTheme == AppTheme.light ? AppTheme.dark : AppTheme.light;
+    notifyListeners();
+  }
+  
+  bool get isDarkMode => _currentTheme == AppTheme.dark;
+  
+  ThemeMode get themeMode => isDarkMode ? ThemeMode.dark : ThemeMode.light;
+}
+
+
+
+
+// --- FILE: lib/ui/ui_exports.dart ---
+// Export all common UI components and utilities
+export 'package:iddikhar/ui/constants/app_colors.dart';
+export 'package:iddikhar/ui/constants/app_sizes.dart';
+export 'package:iddikhar/ui/constants/app_text_styles.dart';
+export 'package:iddikhar/ui/forms/form_utils.dart';
+export 'package:iddikhar/ui/widgets/app_bottom_sheet.dart';
+export 'package:iddikhar/ui/widgets/app_button.dart';
+export 'package:iddikhar/ui/widgets/app_card.dart';
+export 'package:iddikhar/ui/widgets/app_dialogs.dart';
+export 'package:iddikhar/ui/widgets/app_error_widget.dart';
+export 'package:iddikhar/ui/widgets/app_input_field.dart';
+export 'package:iddikhar/ui/widgets/app_scaffold.dart';
+export 'package:iddikhar/ui/widgets/app_separator.dart';
+export 'package:iddikhar/ui/widgets/app_snackbar.dart';
+export 'package:iddikhar/ui/widgets/empty_state.dart';
+export 'package:iddikhar/ui/widgets/filter_chip_row.dart';
+export 'package:iddikhar/ui/widgets/loading_indicator.dart';
+export 'package:iddikhar/ui/widgets/pagination_widget.dart';
+export 'package:iddikhar/ui/widgets/search_app_bar.dart';
+
+
+// --- FILE: lib/ui/widgets/app_bottom_sheet.dart ---
+import 'package:flutter/material.dart';
+import 'package:iddikhar/ui/constants/app_colors.dart';
+import 'package:iddikhar/ui/constants/app_sizes.dart';
+import 'package:iddikhar/ui/constants/app_text_styles.dart';
+
+class AppBottomSheet {
+  static Future<T?> show<T>({
+    required BuildContext context,
+    required Widget child,
+    String? title,
+    bool isDismissible = true,
+    bool enableDrag = true,
+    double? height,
+  }) {
+    return showModalBottomSheet<T>(
+      context: context,
+      isScrollControlled: true,
+      isDismissible: isDismissible,
+      enableDrag: enableDrag,
+      backgroundColor: AppColors.surface,
+      shape: const RoundedRectangleBorder(
+        borderRadius: BorderRadius.vertical(
+          top: Radius.circular(AppSizes.radiusXL),
+        ),
+      ),
+      builder: (context) => Container(
+        height: height ?? MediaQuery.of(context).size.height * 0.8,
+        padding: const EdgeInsets.all(AppSizes.spaceL),
+        child: Column(
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            // Handle
+            Container(
+              width: 40,
+              height: 4,
+              decoration: BoxDecoration(
+                color: AppColors.border,
+                borderRadius: BorderRadius.circular(2),
+              ),
+            ),
+            const SizedBox(height: AppSizes.spaceL),
+            
+            // Title
+            if (title != null) ...[
+              Row(
+                children: [
+                  Expanded(
+                    child: Text(
+                      title,
+                      style: AppTextStyles.titleLarge,
+                      textAlign: TextAlign.center,
+                    ),
+                  ),
+                ],
+              ),
+              const SizedBox(height: AppSizes.spaceL),
+            ],
+            
+            // Content
+            Expanded(child: child),
+          ],
+        ),
+      ),
+    );
+  }
+
+  static Future<void> showActionSheet({
+    required BuildContext context,
+    required List<SheetAction> actions,
+    String? title,
+  }) {
+    return showModalBottomSheet(
+      context: context,
+      backgroundColor: AppColors.surface,
+      shape: const RoundedRectangleBorder(
+        borderRadius: BorderRadius.vertical(
+          top: Radius.circular(AppSizes.radiusXL),
+        ),
+      ),
+      builder: (context) => SafeArea(
+        child: Padding(
+          padding: const EdgeInsets.all(AppSizes.spaceL),
+          child: Column(
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              if (title != null) ...[
+                Text(
+                  title,
+                  style: AppTextStyles.titleMedium,
+                ),
+                const SizedBox(height: AppSizes.spaceM),
+              ],
+              ...actions.map((action) => Column(
+                children: [
+                  ListTile(
+                    leading: action.icon != null ? Icon(action.icon) : null,
+                    title: Text(
+                      action.title,
+                      style: action.isDestructive
+                          ? AppTextStyles.bodyMedium.copyWith(color: AppColors.danger)
+                          : AppTextStyles.bodyMedium,
+                    ),
+                    onTap: () {
+                      Navigator.pop(context);
+                      action.onPressed();
+                    },
+                  ),
+                  if (action != actions.last)
+                    const Divider(height: 1),
+                ],
+              )),
+            ],
+          ),
+        ),
+      ),
+    );
+  }
+}
+
+class SheetAction {
+  final String title;
+  final IconData? icon;
+  final VoidCallback onPressed;
+  final bool isDestructive;
+
+  SheetAction({
+    required this.title,
+    this.icon,
+    required this.onPressed,
+    this.isDestructive = false,
+  });
+}
+
+
+// --- FILE: lib/ui/widgets/app_button.dart ---
+import 'package:flutter/material.dart';
+import 'package:iddikhar/ui/constants/app_colors.dart';
+import 'package:iddikhar/ui/constants/app_sizes.dart';
+import 'package:iddikhar/ui/constants/app_text_styles.dart';
+import 'package:iddikhar/ui/widgets/loading_indicator.dart';
+
+enum ButtonType {
+  primary,
+  secondary,
+  outline,
+  danger,
+  success,
+  text,
+  icon,
+}
+
+class AppButton extends StatelessWidget {
+  final String text;
+  final VoidCallback onPressed;
+  final bool isLoading;
+  final bool isEnabled;
+  final ButtonType type;
+  final double? width;
+  final double? height;
+  final Widget? icon;
+  final EdgeInsetsGeometry? padding;
+  final double borderRadius;
+
+  const AppButton({
+    super.key,
+    required this.text,
+    required this.onPressed,
+    this.isLoading = false,
+    this.isEnabled = true,
+    this.type = ButtonType.primary,
+    this.width,
+    this.height,
+    this.icon,
+    this.padding,
+    this.borderRadius = AppSizes.radiusM,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    final buttonStyle = _getButtonStyle(type);
+    
+    return SizedBox(
+      width: width,
+      height: height ?? AppSizes.buttonHeight,
+      child: ElevatedButton(
+        onPressed: (isEnabled && !isLoading) ? onPressed : null,
+        style: buttonStyle,
+        child: isLoading
+            ? AppButtonLoadingIndicator(color: _getLoadingColor(type))
+            : Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                mainAxisSize: MainAxisSize.min,
+                children: [
+                  if (icon != null) ...[
+                    icon!,
+                    const SizedBox(width: AppSizes.spaceS),
+                  ],
+                  Flexible(
+                    child: Text(
+                      text,
+                      style: _getTextStyle(type),
+                      overflow: TextOverflow.ellipsis,
+                    ),
+                  ),
+                ],
+              ),
+      ),
+    );
+  }
+
+  ButtonStyle _getButtonStyle(ButtonType type) {
+    final backgroundColor = _getBackgroundColor(type);
+    final foregroundColor = _getForegroundColor(type);
+    final disabledBackgroundColor = _getDisabledBackgroundColor(type);
+    final disabledForegroundColor = _getDisabledForegroundColor(type);
+
+    return ElevatedButton.styleFrom(
+      backgroundColor: backgroundColor,
+      foregroundColor: foregroundColor,
+      disabledBackgroundColor: disabledBackgroundColor,
+      disabledForegroundColor: disabledForegroundColor,
+      shape: RoundedRectangleBorder(
+        borderRadius: BorderRadius.circular(borderRadius),
+        side: _getBorderSide(type),
+      ),
+      elevation: _getElevation(type),
+      shadowColor: Colors.transparent,
+      padding: padding ?? const EdgeInsets.symmetric(horizontal: AppSizes.spaceL),
+    );
+  }
+
+  Color _getBackgroundColor(ButtonType type) {
+    switch (type) {
+      case ButtonType.primary:
+        return AppColors.primary;
+      case ButtonType.secondary:
+        return AppColors.secondary;
+      case ButtonType.danger:
+        return AppColors.danger;
+      case ButtonType.success:
+        return AppColors.success;
+      case ButtonType.outline:
+      case ButtonType.text:
+      case ButtonType.icon:
+        return Colors.transparent;
+    }
+  }
+
+  Color _getForegroundColor(ButtonType type) {
+    switch (type) {
+      case ButtonType.primary:
+      case ButtonType.secondary:
+      case ButtonType.danger:
+      case ButtonType.success:
+        return AppColors.onPrimary;
+      case ButtonType.outline:
+        return AppColors.primary;
+      case ButtonType.text:
+      case ButtonType.icon:
+        return AppColors.primary;
+    }
+  }
+
+  Color _getDisabledBackgroundColor(ButtonType type) {
+    switch (type) {
+      case ButtonType.primary:
+        return AppColors.primary.withValues(alpha:0.4);
+      case ButtonType.secondary:
+        return AppColors.secondary.withValues(alpha:0.4);
+      case ButtonType.danger:
+        return AppColors.danger.withValues(alpha:0.4);
+      case ButtonType.success:
+        return AppColors.success.withValues(alpha:0.4);
+      case ButtonType.outline:
+      case ButtonType.text:
+      case ButtonType.icon:
+        return Colors.transparent;
+    }
+  }
+
+  Color _getDisabledForegroundColor(ButtonType type) {
+    return AppColors.disabled;
+  }
+
+  BorderSide _getBorderSide(ButtonType type) {
+    switch (type) {
+      case ButtonType.outline:
+        return const BorderSide(color: AppColors.primary);
+      case ButtonType.text:
+      case ButtonType.icon:
+      case ButtonType.primary:
+      case ButtonType.secondary:
+      case ButtonType.danger:
+      case ButtonType.success:
+        return BorderSide.none;
+    }
+  }
+
+  double _getElevation(ButtonType type) {
+    switch (type) {
+      case ButtonType.primary:
+      case ButtonType.secondary:
+      case ButtonType.danger:
+      case ButtonType.success:
+        return 2;
+      case ButtonType.outline:
+      case ButtonType.text:
+      case ButtonType.icon:
+        return 0;
+    }
+  }
+
+  TextStyle _getTextStyle(ButtonType type) {
+    final baseStyle = AppTextStyles.labelLarge.copyWith(
+      fontWeight: FontWeight.w600,
+    );
+
+    switch (type) {
+      case ButtonType.primary:
+      case ButtonType.secondary:
+      case ButtonType.danger:
+      case ButtonType.success:
+        return baseStyle.copyWith(color: AppColors.onPrimary);
+      case ButtonType.outline:
+      case ButtonType.text:
+      case ButtonType.icon:
+        return baseStyle.copyWith(color: AppColors.primary);
+    }
+  }
+
+  Color _getLoadingColor(ButtonType type) {
+    switch (type) {
+      case ButtonType.primary:
+      case ButtonType.secondary:
+      case ButtonType.danger:
+      case ButtonType.success:
+        return AppColors.onPrimary;
+      case ButtonType.outline:
+      case ButtonType.text:
+      case ButtonType.icon:
+        return AppColors.primary;
+    }
+  }
+}
+
+// Specialized button for icon-only actions
+class AppIconButton extends StatelessWidget {
+  final IconData icon;
+  final VoidCallback onPressed;
+  final bool isLoading;
+  final bool isEnabled;
+  final ButtonType type;
+  final double size;
+  final String? tooltip;
+
+  const AppIconButton({
+    super.key,
+    required this.icon,
+    required this.onPressed,
+    this.isLoading = false,
+    this.isEnabled = true,
+    this.type = ButtonType.primary,
+    this.size = AppSizes.iconSizeM,
+    this.tooltip,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    final buttonStyle = _getButtonStyle(type);
+    
+    Widget button = SizedBox(
+      width: size * 1.5,
+      height: size * 1.5,
+      child: IconButton(
+        onPressed: (isEnabled && !isLoading) ? onPressed : null,
+        style: buttonStyle,
+        icon: isLoading
+            ? AppButtonLoadingIndicator(
+                color: _getLoadingColor(type),
+                size: size * 0.6,
+              )
+            : Icon(icon, size: size),
+      ),
+    );
+
+    if (tooltip != null) {
+      button = Tooltip(message: tooltip!, child: button);
+    }
+
+    return button;
+  }
+
+  ButtonStyle _getButtonStyle(ButtonType type) {
+    final backgroundColor = _getBackgroundColor(type);
+    final foregroundColor = _getForegroundColor(type);
+    final disabledBackgroundColor = _getDisabledBackgroundColor(type);
+    final disabledForegroundColor = _getDisabledForegroundColor(type);
+
+    return IconButton.styleFrom(
+      backgroundColor: backgroundColor,
+      foregroundColor: foregroundColor,
+      disabledBackgroundColor: disabledBackgroundColor,
+      disabledForegroundColor: disabledForegroundColor,
+      shape: RoundedRectangleBorder(
+        borderRadius: BorderRadius.circular(AppSizes.radiusM),
+        side: _getBorderSide(type),
+      ),
+    );
+  }
+
+  Color _getBackgroundColor(ButtonType type) {
+    switch (type) {
+      case ButtonType.primary:
+        return AppColors.primary;
+      case ButtonType.secondary:
+        return AppColors.secondary;
+      case ButtonType.danger:
+        return AppColors.danger;
+      case ButtonType.success:
+        return AppColors.success;
+      case ButtonType.outline:
+      case ButtonType.text:
+      case ButtonType.icon:
+        return Colors.transparent;
+    }
+  }
+
+  Color _getForegroundColor(ButtonType type) {
+    switch (type) {
+      case ButtonType.primary:
+      case ButtonType.secondary:
+      case ButtonType.danger:
+      case ButtonType.success:
+        return AppColors.onPrimary;
+      case ButtonType.outline:
+      case ButtonType.text:
+      case ButtonType.icon:
+        return AppColors.primary;
+    }
+  }
+
+  Color _getDisabledBackgroundColor(ButtonType type) {
+    switch (type) {
+      case ButtonType.primary:
+        return AppColors.primary.withValues(alpha:0.4);
+      case ButtonType.secondary:
+        return AppColors.secondary.withValues(alpha:0.4);
+      case ButtonType.danger:
+        return AppColors.danger.withValues(alpha:0.4);
+      case ButtonType.success:
+        return AppColors.success.withValues(alpha:0.4);
+      case ButtonType.outline:
+      case ButtonType.text:
+      case ButtonType.icon:
+        return Colors.transparent;
+    }
+  }
+
+  Color _getDisabledForegroundColor(ButtonType type) {
+    return AppColors.disabled;
+  }
+
+  BorderSide _getBorderSide(ButtonType type) {
+    switch (type) {
+      case ButtonType.outline:
+        return const BorderSide(color: AppColors.primary);
+      case ButtonType.text:
+      case ButtonType.icon:
+      case ButtonType.primary:
+      case ButtonType.secondary:
+      case ButtonType.danger:
+      case ButtonType.success:
+        return BorderSide.none;
+    }
+  }
+
+  Color _getLoadingColor(ButtonType type) {
+    switch (type) {
+      case ButtonType.primary:
+      case ButtonType.secondary:
+      case ButtonType.danger:
+      case ButtonType.success:
+        return AppColors.onPrimary;
+      case ButtonType.outline:
+      case ButtonType.text:
+      case ButtonType.icon:
+        return AppColors.primary;
+    }
+  }
+}
+
+
+// --- FILE: lib/ui/widgets/app_card.dart ---
+import 'package:flutter/material.dart';
+import 'package:iddikhar/ui/constants/app_colors.dart';
+import 'package:iddikhar/ui/constants/app_sizes.dart';
+import 'package:iddikhar/ui/constants/app_text_styles.dart';
+
+class AppCard extends StatelessWidget {
+  final Widget child;
+  final EdgeInsetsGeometry padding;
+  final Color backgroundColor;
+  final double borderRadius;
+  final BoxBorder? border;
+  final List<BoxShadow>? shadow;
+  final VoidCallback? onTap;
+  final bool showShadow;
+
+  const AppCard({
+    super.key,
+    required this.child,
+    this.padding = const EdgeInsets.all(AppSizes.spaceL),
+    this.backgroundColor = AppColors.surface,
+    this.borderRadius = AppSizes.radiusL,
+    this.border,
+    this.shadow,
+    this.onTap,
+    this.showShadow = true,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      decoration: BoxDecoration(
+        color: backgroundColor,
+        borderRadius: BorderRadius.circular(borderRadius),
+        // يُفضل استخدام border: null بشكل افتراضي إذا لم يكن هناك حد (Border) مطلوب
+        border: border, 
+        boxShadow: shadow ?? (showShadow ? _defaultShadow : null),
+      ),
+      // لإتاحة خاصية النقر والتأثير البصري (InkWell)
+      child: Material(
+        color: Colors.transparent,
+        child: InkWell(
+          onTap: onTap,
+          borderRadius: BorderRadius.circular(borderRadius),
+          child: Padding(
+            padding: padding,
+            child: child,
+          ),
+        ),
+      ),
+    );
+  }
+
+  static List<BoxShadow> get _defaultShadow => [
+    BoxShadow(
+      // تم التصحيح: استخدام withOpacity بدلاً من withValues(alpha:...)
+      color: AppColors.onSurface.withOpacity(0.05), 
+      blurRadius: 8,
+      offset: const Offset(0, 2),
+    ),
+  ];
+}
+
+// ----------------------------------------------------
+
+class AppInfoCard extends StatelessWidget {
+  final String title;
+  final String value;
+  final String? subtitle;
+  final Widget? icon;
+  final Color? valueColor;
+  final VoidCallback? onTap;
+
+  const AppInfoCard({
+    super.key,
+    required this.title,
+    required this.value,
+    this.subtitle,
+    this.icon,
+    this.valueColor,
+    this.onTap,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    // هذه الـ AppCard يجب أن تُوضع داخل Expanded أو SizedBox عند استخدامها في Row في مكان الاستدعاء
+    return AppCard(
+      onTap: onTap,
+      padding: const EdgeInsets.all(AppSizes.spaceL),
+      child: Row(
+        children: [
+          if (icon != null) ...[
+            icon!,
+            const SizedBox(width: AppSizes.spaceM),
+          ],
+          // الـExpanded هنا هي التي تحتاج إلى عرض محدد من الـParent
+          Expanded(
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Text(
+                  title,
+                  style: AppTextStyles.labelMedium.copyWith(
+                    // تم التصحيح: استخدام withOpacity
+                    color: AppColors.onSurface.withOpacity(0.7), 
+                  ),
+                ),
+                const SizedBox(height: AppSizes.spaceXS),
+                Text(
+                  value,
+                  style: AppTextStyles.titleMedium.copyWith(
+                    color: valueColor ?? AppColors.onSurface,
+                    fontWeight: FontWeight.w600,
+                  ),
+                ),
+                if (subtitle != null) ...[
+                  const SizedBox(height: 2),
+                  Text(
+                    subtitle!,
+                    style: AppTextStyles.bodySmall.copyWith(
+                      // تم التصحيح: استخدام withOpacity
+                      color: AppColors.onSurface.withOpacity(0.6), 
+                    ),
+                  ),
+                ],
+              ],
+            ),
+          ),
+        ],
+      ),
+    );
+  }
+}
+
+// ----------------------------------------------------
+
+// New specialized card for statistics
+class AppStatCard extends StatelessWidget {
+  final String title;
+  final String value;
+  final String change;
+  final bool isPositive;
+  final IconData icon;
+  final Color? iconColor;
+
+  const AppStatCard({
+    super.key,
+    required this.title,
+    required this.value,
+    required this.change,
+    required this.isPositive,
+    required this.icon,
+    this.iconColor,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    return AppCard(
+      padding: const EdgeInsets.all(AppSizes.spaceL),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [
+              Text(
+                title,
+                style: AppTextStyles.labelMedium.copyWith(
+                  // تم التصحيح: استخدام withOpacity
+                  color: AppColors.onSurface.withOpacity(0.7), 
+                ),
+              ),
+              Icon(
+                icon,
+                color: iconColor ?? AppColors.primary,
+                size: AppSizes.iconSizeS,
+              ),
+            ],
+          ),
+          const SizedBox(height: AppSizes.spaceS),
+          Text(
+            value,
+            style: AppTextStyles.headlineSmall.copyWith(
+              color: AppColors.onSurface,
+              fontWeight: FontWeight.w700,
+            ),
+          ),
+          const SizedBox(height: AppSizes.spaceXS),
+          Row(
+            children: [
+              Icon(
+                isPositive ? Icons.arrow_upward : Icons.arrow_downward,
+                size: AppSizes.iconSizeXS,
+                color: isPositive ? AppColors.success : AppColors.danger,
+              ),
+              const SizedBox(width: 4),
+              Text(
+                change,
+                style: AppTextStyles.labelSmall.copyWith(
+                  color: isPositive ? AppColors.success : AppColors.danger,
+                ),
+              ),
+            ],
+          ),
+        ],
+      ),
+    );
+  }
+}
+
+
+// --- FILE: lib/ui/widgets/app_dialogs.dart ---
+import 'package:flutter/material.dart';
+import 'package:iddikhar/ui/constants/app_text_styles.dart';
+import 'package:iddikhar/ui/widgets/app_button.dart';
+import 'package:iddikhar/ui/widgets/app_input_field.dart';
+
+abstract class AppDialogs {
+  static Future<bool?> showConfirmationDialog({
+    required BuildContext context,
+    required String title,
+    required String message,
+    String confirmText = 'تأكيد',
+    String cancelText = 'إلغاء',
+    ButtonType confirmButtonType = ButtonType.danger,
+  }) async {
+    return showDialog<bool>(
+      context: context,
+      barrierDismissible: false,
+      builder: (context) => AlertDialog(
+        title: Text(
+          title,
+          style: AppTextStyles.titleLarge,
+          textAlign: TextAlign.right,
+        ),
+        content: Text(
+          message,
+          style: AppTextStyles.bodyMedium,
+          textAlign: TextAlign.right,
+        ),
+        actions: [
+          Row(
+            children: [
+              Expanded(
+                child: AppButton(
+                  text: cancelText,
+                  onPressed: () => Navigator.of(context).pop(false),
+                  type: ButtonType.outline,
+                ),
+              ),
+              const SizedBox(width: 12),
+              Expanded(
+                child: AppButton(
+                  text: confirmText,
+                  onPressed: () => Navigator.of(context).pop(true),
+                  type: confirmButtonType,
+                ),
+              ),
+            ],
+          ),
+        ],
+      ),
+    );
+  }
+
+  static Future<void> showInfoDialog({
+    required BuildContext context,
+    required String title,
+    required String message,
+    String buttonText = 'حسناً',
+  }) async {
+    return showDialog<void>(
+      context: context,
+      barrierDismissible: false,
+      builder: (context) => AlertDialog(
+        title: Text(
+          title,
+          style: AppTextStyles.titleLarge,
+          textAlign: TextAlign.right,
+        ),
+        content: Text(
+          message,
+          style: AppTextStyles.bodyMedium,
+          textAlign: TextAlign.right,
+        ),
+        actions: [
+          AppButton(
+            text: buttonText,
+            onPressed: () => Navigator.of(context).pop(),
+            type: ButtonType.primary,
+          ),
+        ],
+      ),
+    );
+  }
+
+  static Future<String?> showInputDialog({
+    required BuildContext context,
+    required String title,
+    required String hintText,
+    required TextEditingController controller,
+    String confirmText = 'تأكيد',
+    String cancelText = 'إلغاء',
+    ButtonType confirmButtonType = ButtonType.primary,
+  }) async {
+    return showDialog<String>(
+      context: context,
+      barrierDismissible: false,
+      builder: (context) => AlertDialog(
+        title: Text(
+          title,
+          style: AppTextStyles.titleLarge,
+          textAlign: TextAlign.right,
+        ),
+        content: AppInputField(label: title,
+          controller: controller,
+          hintText: hintText,
+          maxLines: 3,
+        ),
+        actions: [
+          Row(
+            children: [
+              Expanded(
+                child: AppButton(
+                  text: cancelText,
+                  onPressed: () => Navigator.of(context).pop(null),
+                  type: ButtonType.outline,
+                ),
+              ),
+              const SizedBox(width: 12),
+              Expanded(
+                child: AppButton(
+                  text: confirmText,
+                  onPressed: () => Navigator.of(context).pop(controller.text),
+                  type: confirmButtonType,
+                ),
+              ),
+            ],
+          ),
+        ],
+      ),
+    );
+  }
+}
+
+
+// --- FILE: lib/ui/widgets/app_error_widget.dart ---
+import 'package:flutter/material.dart';
+import 'package:iddikhar/ui/constants/app_colors.dart';
+import 'package:iddikhar/ui/constants/app_text_styles.dart';
+import 'package:iddikhar/ui/widgets/app_button.dart';
+
+class AppErrorWidget extends StatelessWidget {
+  final String title;
+  final String message;
+  final String? buttonText;
+  final VoidCallback? onRetry;
+  final bool isFullScreen;
+
+  const AppErrorWidget({
+    super.key,
+    required this.title,
+    required this.message,
+    this.buttonText,
+    this.onRetry,
+    this.isFullScreen = false,
+  });
+
+  factory AppErrorWidget.generic({
+    VoidCallback? onRetry,
+    bool isFullScreen = false,
+  }) {
+    return AppErrorWidget(
+      title: 'حدث خطأ',
+      message: 'حدث خطأ غير متوقع. يرجى المحاولة مرة أخرى.',
+      buttonText: 'إعادة المحاولة',
+      onRetry: onRetry,
+      isFullScreen: isFullScreen,
+    );
+  }
+
+  factory AppErrorWidget.network({
+    VoidCallback? onRetry,
+    bool isFullScreen = false,
+  }) {
+    return AppErrorWidget(
+      title: 'خطأ في الاتصال',
+      message: 'تعذر الاتصال بالخادم. يرجى التحقق من اتصال الإنترنت والمحاولة مرة أخرى.',
+      buttonText: 'إعادة المحاولة',
+      onRetry: onRetry,
+      isFullScreen: isFullScreen,
+    );
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    final content = Column(
+      mainAxisAlignment: MainAxisAlignment.center,
+      children: [
+        Icon(
+          Icons.error_outline,
+          size: 64,
+          color: AppColors.danger,
+        ),
+        const SizedBox(height: 16),
+        Text(
+          title,
+          style: AppTextStyles.titleMedium.copyWith(
+            color: AppColors.danger,
+          ),
+          textAlign: TextAlign.center,
+        ),
+        const SizedBox(height: 8),
+        Padding(
+          padding: const EdgeInsets.symmetric(horizontal: 32),
+          child: Text(
+            message,
+            style: AppTextStyles.bodyMedium.copyWith(
+              color: AppColors.onSurfaceVariant,
+            ),
+            textAlign: TextAlign.center,
+          ),
+        ),
+        if (buttonText != null && onRetry != null) ...[
+          const SizedBox(height: 24),
+          AppButton(
+            text: buttonText!,
+            onPressed: onRetry!,
+            width: 200,
+          ),
+        ],
+      ],
+    );
+
+    if (isFullScreen) {
+      return Center(child: content);
+    }
+
+    return content;
+  }
+}
+
+
+// --- FILE: lib/ui/widgets/app_input_field.dart ---
+import 'package:flutter/material.dart';
+import 'package:iddikhar/ui/constants/app_colors.dart';
+import 'package:iddikhar/ui/constants/app_sizes.dart';
+import 'package:iddikhar/ui/constants/app_text_styles.dart';
+
+enum InputFieldType {
+  normal,
+  search,
+  password,
+  multiline,
+}
+
+class AppInputField extends StatelessWidget {
+  final String label;
+  final String? hintText;
+  final TextEditingController? controller;
+  final String? Function(String?)? validator;
+  final TextInputType keyboardType;
+  final bool obscureText;
+  final bool enabled;
+  final int maxLines;
+  final int? maxLength;
+  final Widget? prefixIcon;
+  final Widget? suffixIcon;
+  final void Function(String)? onChanged;
+  final void Function(String)? onSubmitted;
+  final void Function()? onTap;
+  final bool isRequired;
+  final InputFieldType type;
+  final bool autofocus;
+  final TextInputAction? textInputAction;
+  final FocusNode? focusNode;
+  final String? errorText;
+  final bool readOnly;
+
+  const AppInputField({
+    super.key,
+    required this.label,
+    this.hintText,
+    this.controller,
+    this.validator,
+    this.keyboardType = TextInputType.text,
+    this.obscureText = false,
+    this.enabled = true,
+    this.maxLines = 1,
+    this.maxLength,
+    this.prefixIcon,
+    this.suffixIcon,
+    this.onChanged,
+    this.onSubmitted,
+    this.onTap,
+    this.isRequired = false,
+    this.type = InputFieldType.normal,
+    this.autofocus = false,
+    this.textInputAction,
+    this.focusNode,
+    this.errorText,
+    this.readOnly = false,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        if (label.isNotEmpty) ...[
+          Row(
+            children: [
+              Text(
+                label,
+                style: AppTextStyles.labelMedium.copyWith(
+                  color: AppColors.onSurface,
+                  fontWeight: FontWeight.w500,
+                ),
+              ),
+              if (isRequired)
+                Text(
+                  ' *',
+                  style: AppTextStyles.labelMedium.copyWith(
+                    color: AppColors.danger,
+                  ),
+                ),
+            ],
+          ),
+          const SizedBox(height: AppSizes.spaceS),
+        ],
+        TextFormField(
+          controller: controller,
+          validator: validator,
+          keyboardType: keyboardType,
+          obscureText: obscureText,
+          enabled: enabled,
+          maxLines: maxLines,
+          maxLength: maxLength,
+          onChanged: onChanged,
+          onFieldSubmitted: onSubmitted,
+          onTap: onTap,
+          autofocus: autofocus,
+          textInputAction: textInputAction,
+          focusNode: focusNode,
+          readOnly: readOnly,
+          decoration: _buildDecoration(context),
+          style: AppTextStyles.bodyMedium.copyWith(
+            color: enabled ? AppColors.onSurface : AppColors.disabled,
+          ),
+        ),
+      ],
+    );
+  }
+
+  InputDecoration _buildDecoration(BuildContext context) {
+    return InputDecoration(
+      hintText: hintText,
+      prefixIcon: prefixIcon ?? _getDefaultPrefixIcon(),
+      suffixIcon: suffixIcon ?? _getDefaultSuffixIcon(),
+      border: OutlineInputBorder(
+        borderRadius: BorderRadius.circular(AppSizes.radiusM),
+        borderSide: const BorderSide(color: AppColors.border),
+      ),
+      enabledBorder: OutlineInputBorder(
+        borderRadius: BorderRadius.circular(AppSizes.radiusM),
+        borderSide: const BorderSide(color: AppColors.border),
+      ),
+      focusedBorder: OutlineInputBorder(
+        borderRadius: BorderRadius.circular(AppSizes.radiusM),
+        borderSide: const BorderSide(color: AppColors.primary),
+      ),
+      errorBorder: OutlineInputBorder(
+        borderRadius: BorderRadius.circular(AppSizes.radiusM),
+        borderSide: const BorderSide(color: AppColors.danger),
+      ),
+      focusedErrorBorder: OutlineInputBorder(
+        borderRadius: BorderRadius.circular(AppSizes.radiusM),
+        borderSide: const BorderSide(color: AppColors.danger),
+      ),
+      disabledBorder: OutlineInputBorder(
+        borderRadius: BorderRadius.circular(AppSizes.radiusM),
+        borderSide: const BorderSide(color: AppColors.borderLight),
+      ),
+      filled: true,
+      fillColor: enabled ? AppColors.surface : AppColors.disabled,
+      contentPadding: const EdgeInsets.symmetric(
+        horizontal: AppSizes.spaceL,
+        vertical: AppSizes.spaceM,
+      ),
+      errorText: errorText,
+      counterText: '', // Hide counter text by default
+    );
+  }
+
+  Widget? _getDefaultPrefixIcon() {
+    switch (type) {
+      case InputFieldType.search:
+        return const Icon(Icons.search, color: AppColors.onSurfaceVariant);
+      default:
+        return null;
+    }
+  }
+
+  Widget? _getDefaultSuffixIcon() {
+    switch (type) {
+      case InputFieldType.password:
+        // Note: You'll need to handle password visibility toggle externally
+        return null;
+      default:
+        return null;
+    }
+  }
+}
+
+// Specialized search input field
+class AppSearchField extends StatelessWidget {
+  final TextEditingController? controller;
+  final String hintText;
+  final void Function(String)? onChanged;
+  final void Function(String)? onSubmitted;
+  final VoidCallback? onClear;
+
+  const AppSearchField({
+    super.key,
+    this.controller,
+    this.hintText = 'بحث...',
+    this.onChanged,
+    this.onSubmitted,
+    this.onClear,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    return AppInputField(
+      label: '',
+      hintText: hintText,
+      controller: controller,
+      onChanged: onChanged,
+      onSubmitted: onSubmitted,
+      type: InputFieldType.search,
+      suffixIcon: controller?.text.isNotEmpty == true
+          ? IconButton(
+              icon: const Icon(Icons.clear, size: AppSizes.iconSizeS),
+              onPressed: onClear,
+            )
+          : null,
+    );
+  }
+}
+
+
+// --- FILE: lib/ui/widgets/app_scaffold.dart ---
+import 'package:flutter/material.dart';
+import 'package:iddikhar/ui/constants/app_colors.dart';
+import 'package:iddikhar/ui/constants/app_sizes.dart';
+import 'package:iddikhar/ui/constants/app_text_styles.dart';
+
+// A responsive scaffold for the application.
+class AppScaffold extends StatelessWidget {
+  final Widget body;
+  final String? title;
+  final List<Widget>? actions;
+  final Widget? floatingActionButton;
+  final Widget? bottomNavigationBar;
+  final Widget? drawer;
+  final bool showBackButton;
+  final Color? backgroundColor;
+  final PreferredSizeWidget? bottom;
+
+  const AppScaffold({
+    super.key,
+    required this.body,
+    this.title,
+    this.actions,
+    this.floatingActionButton,
+    this.bottomNavigationBar,
+    this.drawer,
+    this.showBackButton = true,
+    this.backgroundColor,
+    this.bottom,
+  });
+
+  // Helper to wrap the body with a max width for large screens
+  Widget _responsiveBodyWrapper(BuildContext context, Widget child) {
+    // Determine if the layout should be centered (for tablet/desktop)
+    final bool isLargeScreen = AppSizes.isTablet(context) || AppSizes.isDesktop(context);
+    // Max width for content on large screens, e.g., 800 logical pixels
+    final double maxWidth = isLargeScreen ? 800 : AppSizes.screenWidth(context);
+
+    return Center(
+      child: ConstrainedBox(
+        constraints: BoxConstraints(maxWidth: maxWidth),
+        child: child,
+      ),
+    );
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      backgroundColor: backgroundColor ?? AppColors.background,
+      appBar: title != null
+          ? AppBar(
+              title: Text(
+                title!,
+                style: AppTextStyles.titleMedium.copyWith(
+                  color: AppColors.onPrimary,
+                  fontWeight: FontWeight.w600,
+                ),
+              ),
+              leading: showBackButton && Navigator.canPop(context)
+                  ? IconButton(
+                      icon: const Icon(Icons.arrow_back, color: Colors.white),
+                      onPressed: () => Navigator.pop(context),
+                    )
+                  : null,
+              actions: actions,
+              backgroundColor: AppColors.primary,
+              elevation: 0,
+              centerTitle: true,
+              bottom: bottom,
+            )
+          : null,
+      body: SafeArea(
+        child: _responsiveBodyWrapper(context, body),
+      ),
+      floatingActionButton: floatingActionButton,
+      bottomNavigationBar: bottomNavigationBar,
+      drawer: drawer,
+    );
+  }
+}
+
+// A responsive sliver scaffold for the application.
+class AppSliverScaffold extends StatelessWidget {
+  final List<Widget> slivers;
+  final Widget? floatingActionButton;
+  final Widget? bottomNavigationBar;
+
+  const AppSliverScaffold({
+    super.key,
+    required this.slivers,
+    this.floatingActionButton,
+    this.bottomNavigationBar,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    // Determine if the layout should be centered (for tablet/desktop)
+    final bool isLargeScreen = AppSizes.isTablet(context) || AppSizes.isDesktop(context);
+    final double maxWidth = isLargeScreen ? 800 : AppSizes.screenWidth(context);
+
+    return Scaffold(
+      backgroundColor: AppColors.background,
+      body: Center(
+        child: ConstrainedBox(
+          constraints: BoxConstraints(maxWidth: maxWidth),
+          child: CustomScrollView(
+            slivers: slivers,
+          ),
+        ),
+      ),
+      floatingActionButton: floatingActionButton,
+      bottomNavigationBar: bottomNavigationBar,
+    );
+  }
+}
+
+
+// --- FILE: lib/ui/widgets/app_separator.dart ---
+import 'package:flutter/material.dart';
+import 'package:iddikhar/ui/constants/app_colors.dart';
+
+class AppSeparator extends StatelessWidget {
+  final double height;
+  final Color color;
+  final EdgeInsets margin;
+
+  const AppSeparator({
+    super.key,
+    this.height = 1,
+    this.color = AppColors.borderLight,
+    this.margin = EdgeInsets.zero,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      height: height,
+      margin: margin,
+      color: color,
+    );
+  }
+}
+class AppVerticalSeparator extends StatelessWidget {
+  final double width;
+  final double? height;
+  final Color color;
+  final EdgeInsets margin;
+
+  const AppVerticalSeparator({
+    super.key,
+    this.width = 1,
+    this.height,
+    this.color = AppColors.borderLight,
+    this.margin = EdgeInsets.zero,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      width: width,
+      height: height,
+      margin: margin,
+      color: color,
+    );
+  }
+}
+class AppSpacer extends StatelessWidget {
+  final double size;
+
+  const AppSpacer({super.key, this.size = 16});
+
+  @override
+  Widget build(BuildContext context) {
+    return SizedBox(height: size, width: size);
+  }
+}
+
+class AppVerticalSpacer extends StatelessWidget {
+  final double height;
+
+  const AppVerticalSpacer({super.key, this.height = 16});
+
+  @override
+  Widget build(BuildContext context) {
+    return SizedBox(height: height);
+  }
+}
+
+class AppHorizontalSpacer extends StatelessWidget {
+  final double width;
+
+  const AppHorizontalSpacer({super.key, this.width = 16});
+
+  @override
+  Widget build(BuildContext context) {
+    return SizedBox(width: width);
+  }
+}
+
+
+// --- FILE: lib/ui/widgets/app_snackbar.dart ---
+import 'package:flutter/material.dart';
+import 'package:iddikhar/ui/constants/app_colors.dart';
+import 'package:iddikhar/ui/constants/app_sizes.dart';
+import 'package:iddikhar/ui/constants/app_text_styles.dart';
+
+class AppSnackbar {
+  static void showSuccess({
+    required BuildContext context,
+    required String message,
+    Duration duration = const Duration(seconds: 3),
+    String actionLabel = 'حسناً',
+  }) {
+    _showSnackbar(
+      context: context,
+      message: message,
+      backgroundColor: AppColors.success,
+      icon: Icons.check_circle,
+      duration: duration,
+      actionLabel: actionLabel,
+    );
+  }
+
+  static void showError({
+    required BuildContext context,
+    required String message,
+    Duration duration = const Duration(seconds: 4),
+    String actionLabel = 'إغلاق',
+  }) {
+    _showSnackbar(
+      context: context,
+      message: message,
+      backgroundColor: AppColors.danger,
+      icon: Icons.error,
+      duration: duration,
+      actionLabel: actionLabel,
+    );
+  }
+
+  static void showWarning({
+    required BuildContext context,
+    required String message,
+    Duration duration = const Duration(seconds: 3),
+    String actionLabel = 'حسناً',
+  }) {
+    _showSnackbar(
+      context: context,
+      message: message,
+      backgroundColor: AppColors.warning,
+      icon: Icons.warning,
+      duration: duration,
+      actionLabel: actionLabel,
+    );
+  }
+
+  static void showInfo({
+    required BuildContext context,
+    required String message,
+    Duration duration = const Duration(seconds: 3),
+    String actionLabel = 'حسناً',
+  }) {
+    _showSnackbar(
+      context: context,
+      message: message,
+      backgroundColor: AppColors.info,
+      icon: Icons.info,
+      duration: duration,
+      actionLabel: actionLabel,
+    );
+  }
+
+  static void _showSnackbar({
+    required BuildContext context,
+    required String message,
+    required Color backgroundColor,
+    required IconData icon,
+    required Duration duration,
+    required String actionLabel,
+  }) {
+    ScaffoldMessenger.of(context).showSnackBar(
+      SnackBar(
+        backgroundColor: backgroundColor,
+        duration: duration,
+        behavior: SnackBarBehavior.floating,
+        shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.circular(AppSizes.radiusM),
+        ),
+        content: Row(
+          children: [
+            Icon(icon, color: Colors.white, size: AppSizes.iconSizeS),
+            const SizedBox(width: AppSizes.spaceM),
+            Expanded(
+              child: Text(
+                message,
+                style: AppTextStyles.bodyMedium.copyWith(
+                  color: Colors.white,
+                  fontWeight: FontWeight.w500,
+                ),
+              ),
+            ),
+          ],
+        ),
+        action: SnackBarAction(
+          label: actionLabel,
+          textColor: Colors.white,
+          onPressed: () {
+           // ScaffoldMessenger.of(context).hideCurrentSnackBar();
+          },
+        ),
+      ),
+    );
+  }
+}
+
+
+// --- FILE: lib/ui/widgets/empty_state.dart ---
+import 'package:flutter/material.dart';
+import 'package:iddikhar/ui/constants/app_colors.dart';
+import 'package:iddikhar/ui/constants/app_text_styles.dart';
+import 'package:iddikhar/ui/widgets/app_button.dart';
+
+class EmptyState extends StatelessWidget {
+  final String title;
+  final String description;
+  final String? buttonText;
+  final VoidCallback? onButtonPressed;
+  final Widget? icon;
+  final bool isFullScreen;
+
+  const EmptyState({
+    super.key,
+    required this.title,
+    required this.description,
+    this.buttonText,
+    this.onButtonPressed,
+    this.icon,
+    this.isFullScreen = false,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    final content = Column(
+      mainAxisAlignment: MainAxisAlignment.center,
+      children: [
+        icon ??
+            Icon(
+              Icons.inbox_outlined,
+              size: 80,
+              color: AppColors.onSurface.withOpacity(0.3),
+            ),
+        const SizedBox(height: 24),
+        Text(
+          title,
+          style: AppTextStyles.titleLarge.copyWith(
+            color: AppColors.onSurface,
+            fontWeight: FontWeight.w600,
+          ),
+          textAlign: TextAlign.center,
+        ),
+        const SizedBox(height: 8),
+        Padding(
+          padding: const EdgeInsets.symmetric(horizontal: 32),
+          child: Text(
+            description,
+            style: AppTextStyles.bodyMedium.copyWith(
+              color: AppColors.onSurface.withOpacity(0.6),
+            ),
+            textAlign: TextAlign.center,
+          ),
+        ),
+        if (buttonText != null && onButtonPressed != null) ...[
+          const SizedBox(height: 24),
+          AppButton(
+            text: buttonText!,
+            onPressed: onButtonPressed!,
+            width: 200,
+          ),
+        ],
+      ],
+    );
+
+    if (isFullScreen) {
+      return Center(child: content);
+    }
+
+    return content;
+  }
+}
+
+class EmptyCustomersState extends StatelessWidget {
+  final VoidCallback onAddCustomer;
+
+  const EmptyCustomersState({
+    super.key,
+    required this.onAddCustomer,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    return EmptyState(
+      title: 'لا يوجد عملاء',
+      description: 'لم تقم بإضافة أي عملاء حتى الآن. ابدأ بإضافة عميل جديد لإدارة معاملاته.',
+      buttonText: 'إضافة عميل',
+      onButtonPressed: onAddCustomer,
+      icon: Icon(
+        Icons.people_outline,
+        size: 80,
+        color: AppColors.onSurface.withOpacity(0.3),
+      ),
+      isFullScreen: true,
+    );
+  }
+}
+
+class EmptyTransactionsState extends StatelessWidget {
+  final VoidCallback onAddTransaction;
+
+  const EmptyTransactionsState({
+    super.key,
+    required this.onAddTransaction,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    return EmptyState(
+      title: 'لا يوجد معاملات',
+      description: 'لم تقم بإضافة أي معاملات حتى الآن. ابدأ بإضافة معاملة جديدة.',
+      buttonText: 'إضافة معاملة',
+      onButtonPressed: onAddTransaction,
+      icon: Icon(
+        Icons.receipt_long_outlined,
+        size: 80,
+        color: AppColors.onSurface.withOpacity(0.3),
+      ),
+      isFullScreen: true,
+    );
+  }
+}
+
+
+// --- FILE: lib/ui/widgets/filter_chip_row.dart ---
+import 'package:flutter/material.dart';
+import 'package:iddikhar/ui/constants/app_colors.dart';
+import 'package:iddikhar/ui/constants/app_sizes.dart';
+import 'package:iddikhar/ui/constants/app_text_styles.dart';
+
+class FilterChipData {
+  final String label;
+  final String value;
+  final bool isSelected;
+
+  FilterChipData({
+    required this.label,
+    required this.value,
+    this.isSelected = false,
+  });
+
+  FilterChipData copyWith({bool? isSelected}) {
+    return FilterChipData(
+      label: label,
+      value: value,
+      isSelected: isSelected ?? this.isSelected,
+    );
+  }
+}
+
+class FilterChipRow extends StatefulWidget {
+  final List<FilterChipData> filters;
+  final ValueChanged<List<FilterChipData>> onFiltersChanged;
+  final bool scrollable;
+
+  const FilterChipRow({
+    super.key,
+    required this.filters,
+    required this.onFiltersChanged,
+    this.scrollable = true,
+  });
+
+  @override
+  State<FilterChipRow> createState() => _FilterChipRowState();
+}
+
+class _FilterChipRowState extends State<FilterChipRow> {
+  late List<FilterChipData> _currentFilters;
+
+  @override
+  void initState() {
+    super.initState();
+    _currentFilters = widget.filters;
+  }
+
+  void _onFilterSelected(int index) {
+    setState(() {
+      _currentFilters[index] = _currentFilters[index].copyWith(
+        isSelected: !_currentFilters[index].isSelected,
+      );
+    });
+    widget.onFiltersChanged(_currentFilters);
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    final content = Wrap(
+      spacing: AppSizes.spaceS,
+      runSpacing: AppSizes.spaceS,
+      children: List.generate(_currentFilters.length, (index) {
+        final filter = _currentFilters[index];
+        return FilterChip(
+          label: Text(
+            filter.label,
+            style: AppTextStyles.labelMedium.copyWith(
+              color: filter.isSelected ? AppColors.onPrimary : AppColors.onSurface,
+            ),
+          ),
+          selected: filter.isSelected,
+          onSelected: (selected) => _onFilterSelected(index),
+          backgroundColor: AppColors.surface,
+          selectedColor: AppColors.primary,
+          checkmarkColor: AppColors.onPrimary,
+          shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(AppSizes.radiusL),
+            side: BorderSide(
+              color: filter.isSelected ? AppColors.primary : AppColors.border,
+            ),
+          ),
+        );
+      }),
+    );
+
+    if (widget.scrollable) {
+      return SingleChildScrollView(
+        scrollDirection: Axis.horizontal,
+        child: content,
+      );
+    }
+
+    return content;
+  }
+}
+
+
+// --- FILE: lib/ui/widgets/loading_indicator.dart ---
+import 'package:flutter/material.dart';
+import 'package:iddikhar/ui/constants/app_colors.dart';
+
+class AppLoadingIndicator extends StatelessWidget {
+  final double size;
+  final Color color;
+  final double strokeWidth;
+
+  const AppLoadingIndicator({
+    super.key,
+    this.size = 24,
+    this.color = AppColors.primary,
+    this.strokeWidth = 3,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    return SizedBox(
+      width: size,
+      height: size,
+      child: CircularProgressIndicator(
+        valueColor: AlwaysStoppedAnimation<Color>(color),
+        strokeWidth: strokeWidth,
+      ),
+    );
+  }
+}
+
+class AppButtonLoadingIndicator extends StatelessWidget {
+  final Color color;
+  final double size;
+
+  const AppButtonLoadingIndicator({
+    super.key,
+    this.color = Colors.white,
+    this.size = 20,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    return SizedBox(
+      width: size,
+      height: size,
+      child: CircularProgressIndicator(
+        valueColor: AlwaysStoppedAnimation<Color>(color),
+        strokeWidth: 2,
+      ),
+    );
+  }
+}
+
+class AppPageLoadingIndicator extends StatelessWidget {
+  final String? message;
+
+  const AppPageLoadingIndicator({super.key, this.message});
+
+  @override
+  Widget build(BuildContext context) {
+    return Center(
+      child: Column(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: [
+          const AppLoadingIndicator(size: 32),
+          if (message != null) ...[
+            const SizedBox(height: 16),
+            Text(
+              message!,
+              style: Theme.of(context).textTheme.bodyMedium?.copyWith(
+                color: AppColors.onSurfaceVariant,
+              ),
+            ),
+          ],
+        ],
+      ),
+    );
+  }
+}
+
+class AppShimmerLoading extends StatelessWidget {
+  final double width;
+  final double height;
+  final double borderRadius;
+
+  const AppShimmerLoading({
+    super.key,
+    required this.width,
+    required this.height,
+    this.borderRadius = 4,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      width: width,
+      height: height,
+      decoration: BoxDecoration(
+        color: AppColors.surface,
+        borderRadius: BorderRadius.circular(borderRadius),
+      ),
+    );
+  }
+}
+
+
+// --- FILE: lib/ui/widgets/pagination_widget.dart ---
+import 'package:flutter/material.dart';
+import 'package:iddikhar/ui/constants/app_colors.dart';
+import 'package:iddikhar/ui/constants/app_sizes.dart';
+import 'package:iddikhar/ui/constants/app_text_styles.dart';
+import 'package:iddikhar/ui/widgets/app_button.dart';
+
+class PaginationWidget extends StatelessWidget {
+  final int currentPage;
+  final int totalPages;
+  final int totalItems;
+  final VoidCallback? onNext;
+  final VoidCallback? onPrevious;
+  final bool isLoading;
+
+  const PaginationWidget({
+    super.key,
+    required this.currentPage,
+    required this.totalPages,
+    required this.totalItems,
+    this.onNext,
+    this.onPrevious,
+    this.isLoading = false,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    if (totalPages <= 1) return const SizedBox();
+
+    // تحديد ما إذا كان زر 'السابق' مفعلاً
+    final bool isPreviousEnabled = currentPage > 1 && onPrevious != null;
+    
+    // تحديد ما إذا كان زر 'التالي' مفعلاً
+    final bool isNextEnabled = currentPage < totalPages && onNext != null;
+
+    return Container(
+      padding: const EdgeInsets.all(AppSizes.spaceM),
+      decoration: BoxDecoration(
+        color: AppColors.surface,
+        border: Border.all(color: AppColors.borderLight),
+        borderRadius: BorderRadius.circular(AppSizes.radiusM),
+      ),
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        children: [
+          AppButton(
+            text: 'السابق',
+            // إصلاح: تمرير دالة غير قابلة لأن تكون خالية (VoidCallback)
+            onPressed: isPreviousEnabled ? onPrevious! : () {},
+            type: ButtonType.outline,
+            // يتم تعطيل الزر إذا لم يكن مفعلاً (isPreviousEnabled) أو كان التحميل جارياً
+            isLoading: isLoading || !isPreviousEnabled,
+            height: AppSizes.buttonHeightSmall,
+          ),
+          
+          Text(
+            'الصفحة $currentPage من $totalPages',
+            style: AppTextStyles.bodyMedium.copyWith(
+              color: AppColors.onSurfaceVariant,
+            ),
+          ),
+          
+          AppButton(
+            text: 'التالي',
+            onPressed: isNextEnabled ? onNext! : () {},
+            type: ButtonType.outline,
+            isLoading: isLoading || !isNextEnabled,
+            height: AppSizes.buttonHeightSmall,
+          ),
+        ],
+      ),
+    );
+  }
+}
+
+
+// --- FILE: lib/ui/widgets/search_app_bar.dart ---
+import 'package:flutter/material.dart';
+import 'package:iddikhar/ui/constants/app_colors.dart';
+import 'package:iddikhar/ui/constants/app_sizes.dart';
+import 'package:iddikhar/ui/constants/app_text_styles.dart';
+
+class SearchAppBar extends StatefulWidget implements PreferredSizeWidget {
+  final String hintText;
+  final ValueChanged<String> onSearchChanged;
+  final VoidCallback? onCancel;
+  final bool automaticallyImplyLeading;
+
+  const SearchAppBar({
+    super.key,
+    this.hintText = 'بحث...',
+    required this.onSearchChanged,
+    this.onCancel,
+    this.automaticallyImplyLeading = true,
+  });
+
+  @override
+  Size get preferredSize => const Size.fromHeight(kToolbarHeight);
+
+  @override
+  State<SearchAppBar> createState() => _SearchAppBarState();
+}
+
+class _SearchAppBarState extends State<SearchAppBar> {
+  final TextEditingController _controller = TextEditingController();
+  final FocusNode _focusNode = FocusNode();
+
+  @override
+  void initState() {
+    super.initState();
+    _controller.addListener(_onTextChanged);
+  }
+
+  void _onTextChanged() {
+    widget.onSearchChanged(_controller.text);
+  }
+
+  void _clearSearch() {
+    _controller.clear();
+    _focusNode.unfocus();
+  }
+
+  void _cancelSearch() {
+    _clearSearch();
+    widget.onCancel?.call();
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return AppBar(
+      backgroundColor: AppColors.surface,
+      elevation: 1,
+      leading: widget.automaticallyImplyLeading
+          ? IconButton(
+              icon: const Icon(Icons.arrow_back, color: AppColors.onSurface),
+              onPressed: _cancelSearch,
+            )
+          : null,
+      title: TextField(
+        controller: _controller,
+        focusNode: _focusNode,
+        decoration: InputDecoration(
+          hintText: widget.hintText,
+          border: InputBorder.none,
+          hintStyle: AppTextStyles.bodyMedium.copyWith(
+            color: AppColors.onSurfaceVariant,
+          ),
+          suffixIcon: _controller.text.isNotEmpty
+              ? IconButton(
+                  icon: const Icon(Icons.clear, size: AppSizes.iconSizeS),
+                  onPressed: _clearSearch,
+                )
+              : null,
+        ),
+        style: AppTextStyles.bodyMedium,
+        textInputAction: TextInputAction.search,
+      ),
+      actions: [
+        if (widget.onCancel != null)
+          TextButton(
+            onPressed: _cancelSearch,
+            child: Text(
+              'إلغاء',
+              style: AppTextStyles.bodyMedium.copyWith(
+                color: AppColors.primary,
+              ),
+            ),
+          ),
+      ],
+    );
+  }
+
+  @override
+  void dispose() {
+    _controller.dispose();
+    _focusNode.dispose();
+    super.dispose();
+  }
+}
+
+وايضا بالعلم ب:
+
+
+
+
+اكتب لي ال lib\features\documents\presentation\screens المبسطة بناء على ما  سبق
